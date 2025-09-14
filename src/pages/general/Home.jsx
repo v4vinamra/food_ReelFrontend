@@ -3,12 +3,15 @@ import axios from 'axios';
 import '../../styles/reels.css'
 import ReelFeed from '../../components/ReelFeed'
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const Home = () => {
     const [ videos, setVideos ] = useState([])
     // Autoplay behavior is handled inside ReelFeed
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/food", { withCredentials: true })
+        axios.get(`${backendUrl}/api/food`, { withCredentials: true })
             .then(response => {
 
                 console.log(response.data);
@@ -22,7 +25,7 @@ const Home = () => {
 
     async function likeVideo(item) {
 
-        const response = await axios.post("http://localhost:3000/api/food/like", { foodId: item._id }, {withCredentials: true})
+        const response = await axios.post(`${backendUrl}/api/food/like`, { foodId: item._id }, {withCredentials: true})
 
         if(response.data.like){
             console.log("Video liked");
@@ -35,7 +38,7 @@ const Home = () => {
     }
 
     async function saveVideo(item) {
-        const response = await axios.post("http://localhost:3000/api/food/save", { foodId: item._id }, { withCredentials: true })
+        const response = await axios.post(`${backendUrl}/api/food/save`, { foodId: item._id }, { withCredentials: true })
         
         if(response.data.save){
             setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, savesCount: v.savesCount + 1 } : v))

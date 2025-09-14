@@ -3,6 +3,9 @@ import '../../styles/auth-shared.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const FoodPartnerLogin = () => {
 
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const FoodPartnerLogin = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const response = await axios.post("http://localhost:3000/api/auth/food-partner/login", {
+    const response = await axios.post(`${backendUrl}/api/auth/food-partner/login`, {
       email,
       password
     }, { withCredentials: true });

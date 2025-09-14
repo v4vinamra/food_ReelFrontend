@@ -3,6 +3,9 @@ import axios from 'axios';
 import '../../styles/create-food.css';
 import { useNavigate } from 'react-router-dom';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const CreateFood = () => {
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
@@ -56,7 +59,7 @@ const CreateFood = () => {
         formData.append('description', description);
         formData.append("mama", videoFile);
 
-        const response = await axios.post("http://localhost:3000/api/food", formData, {
+        const response = await axios.post(`${backendUrl}/api/food`, formData, {
             withCredentials: true,
         })
 

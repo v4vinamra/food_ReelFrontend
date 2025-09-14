@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
 
+
 const ChooseRegister = () => {
   return (
     <div className="auth-page-wrapper">
